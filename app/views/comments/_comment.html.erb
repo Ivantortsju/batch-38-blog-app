@@ -1,0 +1,22 @@
+<% if comment.persisted? %>
+  <% unless comment.archived? %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+
+  <p>
+    <%= link_to "Delete", [comment.article, comment], data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure you want to delete the comment?"
+                } %>
+  <%= link_to "Edit", edit_article_comment_path(@article, comment) %>
+  </p>
+  
+  <% end %>
+<% end %>
